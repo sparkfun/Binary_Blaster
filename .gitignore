@@ -38,6 +38,10 @@ local.properties
 *.s#?
 *.csv#
 *.csv
+*.G??
+*.ZIP
+*.TXT
+*.dri
 
 
 #################

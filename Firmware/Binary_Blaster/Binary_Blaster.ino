@@ -68,9 +68,9 @@ void setup() {
   buzz_blast(300);
   
 //  for testing the segment display functions...  
-//  for(int i=0;i<16;i++){
-//    for(int j = 0;j<100;j++) display_7seg(i);
-//    delay(250);
+//  for(int i=0;i<22;i++){
+//    for(int j = 0;j<50;j++) display_7seg(i);
+//    delay(50);
 //  }
 
 //  for testing the button led display functions...  
@@ -117,7 +117,7 @@ void loop() {
   print_sequence();
   delay(1000);
   
-  start = millis(); // used to track total game time - the plyaers "score"
+  start = micros(); // used to track total game time - the plyaers "score"
   Serial.print("start:");
   Serial.println(start);
   
@@ -186,14 +186,16 @@ void set_digit(int decimal_val){
 }
 
 
-void display_dig1_2(int d1, int d2=0){
+void display_dig1_2(int d1, int d2=-1){
   int delay_time = 6;
-  if(d2) delay_time = 3;
+  if(d2 != -1) delay_time = 3;
+  
   set_digit(d1);
   digitalWrite(dig1, HIGH);   // turn the LED on (HIGH is the voltage level)
   digitalWrite(dig2, LOW);    // turn the LED off by making the voltage LOW
   delay(delay_time);               // wait for a second
-  if(d2){
+  
+  if(d2 != -1){
   set_digit(d2);
   digitalWrite(dig1, LOW);   // turn the LED on (HIGH is the voltage level)
   digitalWrite(dig2, HIGH);    // turn the LED off by making the voltage LOW
@@ -206,7 +208,17 @@ void display_dig1_2(int d1, int d2=0){
 
 void display_7seg(int value){
   if(value<10) display_dig1_2(value);
-  if(value>=10) display_dig1_2(value-10, value/10); 
+  else 
+  {
+    int dig1 = 0;
+    int dig2 = value;
+    while(dig2 >= 10) 
+    {
+      dig2 -= 10;
+      dig1 += 1;
+    }
+    display_dig1_2(dig2, dig1); 
+  }
 }
 
 void randomize_sequence(){
@@ -328,12 +340,12 @@ void display_leds(int value){
 }
 
 void display_winner(){
- long end_time = millis();
+ long end_time = micros();
  
- long total_time = end_time - start;
- total_time /= 1000; // convert milliseconds to seconds
- Serial.print("total_time:");
- Serial.println(total_time);
+ long total_time_microseconds = end_time - start;
+ int total_time = total_time_microseconds/1000000; // convert microseconds to seconds
+ Serial.print("total_time_microseconds:");
+ Serial.println(total_time_microseconds);
  display_zoom();
  display_zoom();
  display_zoom(); 

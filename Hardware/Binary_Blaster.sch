@@ -8702,10 +8702,10 @@ Commonly used for 1/4W through-hole resistors. 0.3" pitch between holes.&lt;br&g
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="P+9" library="SparkFun" deviceset="3.3V" device=""/>
 <part name="GND1" library="SparkFun" deviceset="GND" device=""/>
-<part name="S3" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-LED" device="EZ" value="SWITCH-MOMENTARY-LEDEZ"/>
-<part name="S4" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-LED" device="EZ" value="SWITCH-MOMENTARY-LEDEZ"/>
-<part name="S5" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-LED" device="EZ" value="SWITCH-MOMENTARY-LEDEZ"/>
-<part name="S6" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-LED" device="EZ" value="SWITCH-MOMENTARY-LEDEZ"/>
+<part name="S3" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-LED" device="EZ" value=""/>
+<part name="S4" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-LED" device="EZ" value=""/>
+<part name="S5" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-LED" device="EZ" value=""/>
+<part name="S6" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-LED" device="EZ" value=""/>
 <part name="GND3" library="SparkFun" deviceset="GND" device=""/>
 <part name="LOGO1" library="SparkFun-Aesthetics" deviceset="LOGO-SFE" device="NEW" value="LOGO-SFENEW"/>
 <part name="LOGO2" library="SparkFun-Aesthetics" deviceset="LOGO-SFE" device="NEW"/>

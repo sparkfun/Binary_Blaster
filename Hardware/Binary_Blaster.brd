@@ -2030,10 +2030,10 @@ design rules under a new name.</description>
 <element name="JP7" library="SparkFun" package="STAND-OFF" value="STAND-OFF" x="3.81" y="3.81"/>
 <element name="U$3" library="SparkFun" package="OSHW-LOGO-S" value="OSHW-LOGOS" x="41.275" y="64.135" rot="MR0"/>
 <element name="U$7" library="Testing" package="DIL28-3_KEYED-14" value="AVR-MEGA8-P-KEYED-14" x="43.18" y="53.34"/>
-<element name="S3" library="SparkFun-Electromechanical" package="TACTILE-PTH-LED-12MM-EZ" value="SWITCH-MOMENTARY-LEDEZ" x="20.32" y="8.89"/>
-<element name="S4" library="SparkFun-Electromechanical" package="TACTILE-PTH-LED-12MM-EZ" value="SWITCH-MOMENTARY-LEDEZ" x="35.56" y="8.89"/>
-<element name="S5" library="SparkFun-Electromechanical" package="TACTILE-PTH-LED-12MM-EZ" value="SWITCH-MOMENTARY-LEDEZ" x="50.8" y="8.89"/>
-<element name="S6" library="SparkFun-Electromechanical" package="TACTILE-PTH-LED-12MM-EZ" value="SWITCH-MOMENTARY-LEDEZ" x="66.04" y="8.89"/>
+<element name="S3" library="SparkFun-Electromechanical" package="TACTILE-PTH-LED-12MM-EZ" value="" x="20.32" y="8.89"/>
+<element name="S4" library="SparkFun-Electromechanical" package="TACTILE-PTH-LED-12MM-EZ" value="" x="35.56" y="8.89"/>
+<element name="S5" library="SparkFun-Electromechanical" package="TACTILE-PTH-LED-12MM-EZ" value="" x="50.8" y="8.89"/>
+<element name="S6" library="SparkFun-Electromechanical" package="TACTILE-PTH-LED-12MM-EZ" value="" x="66.04" y="8.89"/>
 <element name="FRAME1" library="SparkFun-Aesthetics" package="CREATIVE_COMMONS" value="FRAME-LETTER" x="-135.362121875" y="0"/>
 <element name="LOGO1" library="SparkFun-Aesthetics" package="SFE-NEW-WEBLOGO" value="LOGO-SFENEW" x="33.782" y="63.373"/>
 <element name="LOGO2" library="SparkFun-Aesthetics" package="SFE-NEW-WEBLOGO" value="LOGO-SFENEW" x="52.197" y="59.69" rot="MR0"/>

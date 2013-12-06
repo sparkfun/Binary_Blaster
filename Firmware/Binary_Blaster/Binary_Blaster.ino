@@ -111,33 +111,32 @@ void loop() {
 //  
 //  delay(250);
   
-  while(!read_buttons()) display_roundabout(); // wait for the user to press a button to begin game
+  while(display_roundabout_waiting()); // wait for the user to press a button to begin game
   
   randomize_sequence();
   print_sequence();
-  delay(1000);
-  
+  //delay(1000);
+  display_zoom(); // zoomy blinky
   start = micros(); // used to track total game time - the plyaers "score"
   Serial.print("start:");
   Serial.println(start);
   
   for(int i=0;i<16;i++){
-  if(i == 15) {
-    display_winner(); // player made it through all 15 - they win!
-    break;
-  }
-  display_roundabout();
-  display_7seg(sequence[i]);
-  if(listen_for_button(i)) {
-    display_leds(read_buttons()); // show buttons pressed, just so you can see correct bits illuminated
-    int start_note = 300;
-    start_note += i*40;
-    buzz_blast(start_note);
-    delay(250);
-    display_leds(0); // clear leds
-  }
-  else break; // listen_for_button() will return false if the user doesn't press the correct button within timeout
-  
+    if(i == 15) {
+      display_winner(); // player made it through all 15 - they win!
+      break;
+    }
+    display_roundabout();
+    display_7seg(sequence[i]);
+    if(listen_for_button(i)) {
+      display_leds(read_buttons()); // show buttons pressed, just so you can see correct bits illuminated
+      int start_note = 300;
+      start_note += i*40;
+      buzz_blast(start_note);
+      delay(250);
+      display_leds(0); // clear leds
+    }
+    else break; // listen_for_button() will return false if the user doesn't press the correct button within timeout
   }  
 }
 
@@ -147,8 +146,8 @@ boolean listen_for_button(int i){
     display_7seg(sequence[i]);
     Serial.print(sequence[i]);
     Serial.print(":");
-   Serial.println(read_buttons());
-   if(sequence[i] == read_buttons()){
+    Serial.println(read_buttons());
+    if(sequence[i] == read_buttons()){
     Serial.println("CORRECT!");
     return true;
    } 
@@ -363,4 +362,17 @@ void buzz_blast(int start_note){
   delay(25);
   //noTone(6);
   }
+}
+
+boolean display_roundabout_waiting(){
+  if(!read_buttons()) blink_segment(101,1);
+  if(!read_buttons()) blink_segment(102,1);
+  if(!read_buttons()) blink_segment(103,1);
+  if(!read_buttons()) blink_segment(104,1);
+  if(!read_buttons()) blink_segment(104,2);
+  if(!read_buttons()) blink_segment(105,2);
+  if(!read_buttons()) blink_segment(106,2);
+  if(!read_buttons()) blink_segment(101,2);
+  if(!read_buttons()) return true;
+  else return false;
 }

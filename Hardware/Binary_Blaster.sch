@@ -8900,7 +8900,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <sheets>
 <sheet>
 <plain>
-<text x="243.84" y="7.62" size="2.54" layer="94">1</text>
+<text x="243.84" y="7.62" size="2.54" layer="94">10</text>
 <text x="157.48" y="7.62" size="1.778" layer="94">Pete Lewis</text>
 <wire x1="170.18" y1="185.42" x2="170.18" y2="116.84" width="0.2032" layer="97" style="shortdash"/>
 <wire x1="170.18" y1="116.84" x2="248.92" y2="116.84" width="0.2032" layer="97" style="shortdash"/>

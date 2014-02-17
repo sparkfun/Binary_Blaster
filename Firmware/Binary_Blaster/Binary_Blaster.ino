@@ -8,8 +8,8 @@ https://github.com/sparkfun/Binary_Blaster
 This code is meant to be used with SFE's Binary Blaster thru-hole soldering kit. 
 It can be found here: https://www.sparkfun.com/products/12037
 It is an educational kit that is meant to teach thru-hole soldering, 
-and also challange the player to practice binary conversion. The default playing
-mode is to display the values in decimal. If you'd like to play hexidecimal 
+and also challenge the player to practice binary conversion. The default playing
+mode is to display the values in decimal. If you'd like to play hexadecimal 
 mode, then you can do so by holding down the "bit0" button while powering up.
 
 Resources:
@@ -19,7 +19,7 @@ Development environment specifics:
 Arduino 1.0.5
 Hardware: v10*
 *Note, PB0 (aka arduino pin "D8") has been removed from the IC, to make it a
-keyed part. This helps beginners avoid inccorect placement of the IC.
+keyed part. This helps beginners avoid incorrect placement of the IC.
 
 This code is beerware; if you see me (or any other SparkFun employee) at the
 local, and you've found our code helpful, please buy us a round!
@@ -34,12 +34,12 @@ Distributed as-is; no warranty is given.
   // There are two 7-segment displays on this game.
   // We control each display by both writing the anode digit pin HIGH,
   // and writing the desired single segment cathode pin LOW. Only one segment 
-  // may be actually lite at one instance. We blink segments in a fast 
+  // may be actually lit at one instance. We blink segments in a fast 
   // sequence, and then it appears to illuminate multiple segments 
   // simultaneously. 
   // ***Note, the cathodes for the 7 segments are all connected
   // to the pins on PORTB. These are controlled by writing directly to the
-  // entire port (e.g. "PORTB = ~0b00001100;") in function set_7segment_pins().
+  // entire port (e. g. "PORTB = ~0b00001100;") in function set_7segment_pins().
 const int digit_1_anode = A5;
 const int digit_2_anode = A4;
 
@@ -58,8 +58,8 @@ const int button_input_pin_bit3 = A0;
 // Define pins connected to the LEDs inside the tactile LED buttons
   // Note, These pin definitions are for the LEDs, not the switches.
   // These are used to control the LEDs. If the user presses the correct
-  // binary equivilant, then they will light up to show which bits have been
-  // set. Turning an LED on means that bit is set. Truning an LED off means
+  // binary equivalent, then they will light up to show which bits have been
+  // set. Turning an LED on means that bit is set. Turning an LED off means
   // that bit is cleared. When the game is waiting for the player to "blast
   // in" the correct bits, all bits are set as cleared.
   // Each LED corresponds to a bit, and therefore has the "bit0" or
@@ -78,13 +78,13 @@ const int led_pin_bit3 = 2;
   // This will include 16 possibilities, although we will not use "0",
   // because "0" is hard for the player to input. All other values will 
   // require the player to set bits (aka press the buttons) to create
-  // the correct binary 4 bit equivilant.
+  // the correct binary 4 bit equivalent.
   // This array will be filled in each time we call shuffle_sequence()
 int sequence[16];
 
-// Define a variable to store a timestamp of when we start each game
+// Define a variable to store a time stamp of when we start each game
   // This will be used to calculate the total time it takes the player
-  // to complete all 15 possibilites (this is how they win the game). 
+  // to complete all 15 possibilities (this is how they win the game). 
   // Note, there is a timeout feature that will cause the player to loose
   // if they do not input the correct buttons within the timeout time.
   // This also resets the game and will require the player to do all 15 again
@@ -92,21 +92,21 @@ int sequence[16];
   // At the end of the game, it will display the total time that it took the
   // player to complete all 15. This is their "score" for that completion.
   // This way, the player can know how fast they were able to convert, 
-  // and pracitce to decrease their total time.
+  // and practice to decrease their total time.
 long start_timestamp;
 
-// Define the amount of time it takes to timeout during gameplay
-  // Each time a new value is diplayed on the 7-segment displays, the player
+// Define the amount of time it takes to timeout during game-play
+  // Each time a new value is displayed on the 7-segment displays, the player
   // only has a set amount of time to press the correct buttons. If they think
   // or wait too long, then the game will timeout and reset. This makes the 
   // game a bit more challenging and requires that the player really know
-  // their conversions. By default is is set to 1000 miliseconds 
+  // their conversions. By default is is set to 1000 milliseconds 
   // (aka 1 second). You can decrease this number to make it more difficult,
   // or make it longer if you'd like to have more time to practice.
   // This variable is used in function, listen_for_value().
 #define TIMEOUT_MILISECONDS 1000
 
-// Define a variable to display in hexidecimal or decimal
+// Define a variable to display in hexadecimal or decimal
   // If this is set to true, then it will display in hex.
   // If false, then it will display in decimal.
   // This is checked in the function, display_7seg(), which ultimately changes
@@ -150,7 +150,7 @@ void setup()
     // I can set all of them to outputs with the following single line of code,
     // by setting the register "DDRB" to the desired binary value.
     // *Note, PB0 (aka arduino pin "D8" has been removed from the IC, to make it a
-    // keyed part. This helps beginners avoid inccorect placement of the IC.
+    // keyed part. This helps beginners avoid incorrect placement of the IC.
   DDRB = 0b11111111;
   
   // Set all of the segments control pins to LOW (set to "0")
@@ -203,11 +203,11 @@ void loop()
   // Display a blinks on the button LEDs to indicate the new game start.
   display_zoom();
   
-  // Take a timestamp to remember when they started the active game.
+  // Take a time stamp to remember when they started the active game.
     // This will be used later to calculate their total time (aka "score")
   start_timestamp = micros();
   
-  // Show the timestamp in a serial terminal window. Mostly for debugging.
+  // Show the time stamp in a serial terminal window. Mostly for debugging.
   Serial.print("start_timestamp:");
   Serial.println(start_timestamp);
   
@@ -300,7 +300,7 @@ boolean listen_for_value(int correct_value)
   // **Note, you can send this function some special decimal values
   // above 100 (see below) to have more precise control. This method is used
   // in the function blink_segment() and display_roundabout() for fun blinking
-  // during gameplay and while waiting to start a new game.
+  // during game-play and while waiting to start a new game.
   // ***Note, if you send it 10-15, it will display in HEX
 void set_7segment_pins(int decimal_val)
 {
@@ -347,12 +347,12 @@ void set_7segment_pins(int decimal_val)
   // d2 is the left digit. It is controlled by digit_2_anode.
 void display_dig1_2(int d1, int d2=-1)
 {
-  // Define a delay time vairable. this helps keep the timing the same, whether
+  // Define a delay time variable. this helps keep the timing the same, whether
   // you want to display one or two digits.
-  // Defaut to 6 (miliseconds)
+  // Default to 6 (milliseconds)
   int delay_time = 6; 
   
-  // Cut it in half (to 3 miliseconds) if you're displaying 2 digits.
+  // Cut it in half (to 3 milliseconds) if you're displaying 2 digits.
   if(d2 != -1) delay_time = 3;
   
   // Always at least display digit 1
@@ -380,9 +380,9 @@ void display_dig1_2(int d1, int d2=-1)
   // the value on the displays. It will use one or two displays as necessary.
   // Note, this is a very quick blink of a value, in order to actually see the 
   // segments light up for a substantial time, you must loop this function.
-  // Note, becuase we can only control each display one-at-a-time, we must
+  // Note, because we can only control each display one-at-a-time, we must
   // separate digit 1 and 2 from any values greater than 9.
-  // This functio also checks for Hex_mode. To display in hexidecimal, this
+  // This function also checks for Hex_mode. To display in hexadecimal, this
   // function can simply send values greater than 9 as a single digit value to
   // display_dig_2(). set_7segment_pins() will take care of the rest.
 void display_7seg(int value)
@@ -416,10 +416,10 @@ void display_7seg(int value)
   // in the final shuffled array.
 void shuffle_sequence()
 {
-  // Start with all 15 options avaialable
+  // Start with all 15 options available
   int sequence_options[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
   
-  // Using a for loop, choose a random potision (aka value) from 
+  // Using a for loop, choose a random position (aka value) from 
   // sequence_options[] array
   for(int i = 0 ; i < 15 ; i++)
   {
@@ -429,7 +429,7 @@ void shuffle_sequence()
     // we pull a new random value from sequence_options[] array.
     int random_choice = random(0,15-i);
     
-    // Set the current sequence spot (calle with our index, "i", to a randomly 
+    // Set the current sequence spot (call with our index, "i", to a randomly 
     // chosen option
     sequence[i] = sequence_options[random_choice]; 
   
@@ -448,7 +448,7 @@ void shuffle_sequence()
 
 // Define a function to read the four buttons for player input
   // This function will return an integer, "input_var", that the player is
-  // currently pressing the binary equivilent on the buttons.
+  // currently pressing the binary equivalent on the buttons.
   // It reads each button, and sets the corresponding bit within "input_var".
 int read_buttons(){
   int input_var = 0;
@@ -462,7 +462,7 @@ int read_buttons(){
 // Define a function to flash a single button LED
   // This is used in the blink_zoom() function.
   // Send this an integer of the LED you'd like to blink.
-  // It will send that LED high for 50 miliseconds, and then turn it off.
+  // It will send that LED high for 50 milliseconds, and then turn it off.
   // Note, this will only allow you to turn on one LED at a time. If you'd like
   // to turn on multiple LEDs at the same time, then use display_leds()
 void flash_button_led(int led)
@@ -485,7 +485,7 @@ void flash_button_led(int led)
 
 // Define a function to blink one single display
   // Send this the specific segment combo and the desired display (either 
-  // digit 1 or 1), and this function will blink it for 50 miliseconds. 
+  // digit 1 or 1), and this function will blink it for 50 milliseconds. 
   // This is used in display_roundabout() and display_roundabout_waiting().
 void blink_segment(int seg, int digit)
 {
@@ -506,10 +506,10 @@ void blink_segment(int seg, int digit)
 }
 
 // Define a function to blink segments in a sequence that sends the "blink"
-  // around the outer parimeter segments of both digits. This looks like the 
+  // around the outer perimeter segments of both digits. This looks like the 
   // "blink" is going around in circles. It uses the special values (above 100)
   // feature of blink_segment(). It's used after the player inputs a correct
-  // combo of buttons during gameplay.
+  // combo of buttons during game-play.
 void display_roundabout()
 {
   blink_segment(101,1);
@@ -524,7 +524,7 @@ void display_roundabout()
 
 // Define a function that blinks the button LEDs from left to right and back
   // This kind of looks like the "blink" is zooming along the buttons.
-  // It is used at various places during gameplay to add some fun blinks.
+  // It is used at various places during game-play to add some fun blinks.
 void display_zoom()
 {
   flash_button_led(0);
@@ -538,11 +538,11 @@ void display_zoom()
 
 // Define a function to control the 4 button LEDs
   // Send this function an integer value, and it will display the binary 
-  // equivilent on the button LEDs. In order to do this, it can turn on
+  // equivalent on the button LEDs. In order to do this, it can turn on
   // multiple LEDs at the same time. Also note, send this a "0" to turn off
   // all LEDs. This function is called after the player inputs the correct
   // button combo, to indicate they are correct, and to allow the player to 
-  // see the correct binary equivilent for a moment before the next value is
+  // see the correct binary equivalent for a moment before the next value is
   // displayed.
 void display_leds(int value)
 {
@@ -567,20 +567,20 @@ void display_leds(int value)
 
 // Define a function to use when the player has won!
   // This is called when the user has correctly pressed all 15 value 
-  // possibilies in sequence[] array. It take a timestamp and calculates
+  // possibilities in sequence[] array. It take a time stamp and calculates
   // how long it took. This is the players "score". It displays this total time
   // in decimal (and so it needs to temporarily turn off Hex_mode, if 
   // necessary. It also prints the time in microseconds to the terminal,
   // for a more precise score, if the player would like to know it.
 void display_winner()
 {
-  // Take a timestamp to know the players completion time.
+  // Take a time stamp to know the players completion time.
   long end_timestamp = micros();
   
   // subtract start from end, to calculate total.
   long total_time_microseconds = end_timestamp - start_timestamp;
   
-  // Show the total time in microsends on the serial terminal window.
+  // Show the total time in microseconds on the serial terminal window.
   Serial.print("total_time_microseconds:");
   Serial.println(total_time_microseconds);
  
@@ -592,7 +592,7 @@ void display_winner()
   display_zoom();
   display_zoom(); 
   
-  // Check to see if we are in Hex mode. If so, we will need to temprorarly
+  // Check to see if we are in Hex mode. If so, we will need to temporarily
   // turn that off (and go to default decimal mode) to display the total time
   // to the player on the two 7 segment displays. It will most likely be some
   // value between 20 and 60, so this is much easier to understand in
@@ -703,7 +703,7 @@ void hex_mode_entered()
 
 // Define a function to test the button LED control functions
   // Runs a routine where the 7 segment display AND the button LEDs display
-  // an incrementing value from 0 to 15. Note, this is not used during gameplay 
+  // an incrementing value from 0 to 15. Note, this is not used during game-play 
   // and is not actually called anywhere in the above code. It was used during 
   // testing, and may be useful for future development on this code.
 void TESTING_button_LED_functions()

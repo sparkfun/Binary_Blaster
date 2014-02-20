@@ -263,6 +263,13 @@ void loop()
     else // If we get here, the player has timed out, and thus lost the game.
     {
       display_loser();
+      
+      // Show the user what they should have pressed.
+      // This is designed to help a beginner learn the conversions, and 
+      // hopefully enables a true binary newbie to learn it by simply watching 
+      // and repeating.
+      display_correct_conversion(sequence[i]);
+      
       break; 
     }  
   }  
@@ -677,6 +684,22 @@ void display_loser()
   display_leds(0);
 }
 
+// Define a function to display a value on the 7-segment, and show the
+  // correct binary equivalent on the buttons for 3 seconds.
+  // Send this function a value from 1-15, and it will show the correct
+  // buttons for 3 seconds. When the player times out they lose that 
+  // round, but this function is used to hopefully teach them what
+  // they should have pressed.
+void display_correct_conversion(int i)
+{
+    for(int j = 0 ; j < 500 ; j++) 
+    {
+      display_7seg(i);
+      display_leds(i);
+    }
+    display_leds(0);
+}
+ 
 // Define a function to print the entire sequence to a serial terminal window
   // This was mostly used while debugging the function, shuffle_sequence()
 void print_sequence()

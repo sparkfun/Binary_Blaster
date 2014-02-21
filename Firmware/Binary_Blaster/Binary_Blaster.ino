@@ -193,7 +193,7 @@ void loop()
     // When a button is pressed, it will return false. This will cause the 
     // while loop to no longer be true, and thus allow us to continue on to 
     // the start of the game (the rest of the main loop)
-  while(display_roundabout_waiting());
+  while(display_counting_waiting());
   
   // Shuffle the order of the values in the sequence[] array.
     // This makes the game more challenging, because each time the player starts
@@ -268,8 +268,10 @@ void loop()
       // This is designed to help a beginner learn the conversions, and 
       // hopefully enables a true binary newbie to learn it by simply watching 
       // and repeating.
-      display_correct_conversion(sequence[i]);
+      display_value(sequence[i], 500);
       
+      // Indicate we are reseting.
+      display_roundabout();
       break; 
     }  
   }  
@@ -288,6 +290,18 @@ boolean listen_for_value(int correct_value)
   while(timeout)
   {
     display_7seg(correct_value);
+    
+    // Clear button LEDs
+    display_leds(0);
+    
+    // Set button LEDs to whatever the player is currently pressing,
+    // even if it is incorrect. This is designed to show the player
+    // they must press multiple buttons at the same time, because
+    // when they release a button, the led will turn off
+    display_leds(read_buttons());
+    
+    // Take another reading of the buttons, and if it's correct
+    // then return true.
     if(read_buttons() == correct_value)
     {
       return true;
@@ -620,6 +634,8 @@ void display_winner()
       display_7seg(total_time); // show time (score) to user
     }
   }
+  
+  display_roundabout();
 }
 
 // Define a function to buzz the buzzer in a series of tones that sound like a 
@@ -636,6 +652,23 @@ void buzz_blast(int start_note)
     tone(6, i, 25);
     delay(25);
   }
+}
+
+// Define a function to display a value on the 7-segment, and show the
+  // correct binary equivalent on the buttons.
+  // Send this function a value from 1-15, and it will show the correct
+  // buttons for a certain amount of times. When the player times out they 
+  // lose that round, but this function is used to hopefully teach them what
+  // they should have pressed. Send a value of 500 for times, for about 3 
+  // seconds.
+void display_value(int value, int times)
+{
+    for(int j = 0 ; j < times ; j++) 
+    {
+      display_7seg(value);
+      display_leds(value);
+    }
+    display_leds(0);
 }
 
 // Define a function to use during waiting mode (aka "attract mode")
@@ -658,6 +691,27 @@ boolean display_roundabout_waiting()
   if(!read_buttons()) return true;
   else return false;
 }
+
+// Define a function to use during waiting mode (aka "attract mode")
+  // This will display a sequence of values (on both the 7 segment
+  // displays and the buttons) counting from 1 up to 15.
+  // It will return true while all buttons remain HIGH.
+  // The instance the player hits a button, it returns false.
+boolean display_counting_waiting()
+{
+  for(int k = 1; k <= 15 ; k++)
+  {
+    display_leds(k);
+    for(int j = 0 ; j < 250 ; j++) 
+    {
+      display_7seg(k);
+      if(read_buttons()) return false;
+    }
+    display_leds(0);
+  }
+  return true; // If we get here, then we've completed all 15.
+}
+
 
 // Define a function to show that the player has timed out and the game is 
   // resetting. This blinks the left two button LEDs, then the right two button
@@ -682,22 +736,6 @@ void display_loser()
   display_leds(3);
   buzz_blast(300);
   display_leds(0);
-}
-
-// Define a function to display a value on the 7-segment, and show the
-  // correct binary equivalent on the buttons for 3 seconds.
-  // Send this function a value from 1-15, and it will show the correct
-  // buttons for 3 seconds. When the player times out they lose that 
-  // round, but this function is used to hopefully teach them what
-  // they should have pressed.
-void display_correct_conversion(int i)
-{
-    for(int j = 0 ; j < 500 ; j++) 
-    {
-      display_7seg(i);
-      display_leds(i);
-    }
-    display_leds(0);
 }
  
 // Define a function to print the entire sequence to a serial terminal window

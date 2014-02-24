@@ -189,7 +189,7 @@ void loop()
 {
   // Wait for the player to press any button in order to start a new game
     // Enter a while loop that will remain true until they press a button
-    // display_roundabout_waiting() will return true, until a button is pressed.
+    // display_counting_waiting() will return true, until a button is pressed.
     // When a button is pressed, it will return false. This will cause the 
     // while loop to no longer be true, and thus allow us to continue on to 
     // the start of the game (the rest of the main loop)
@@ -270,7 +270,7 @@ void loop()
       // and repeating.
       display_value(sequence[i], 500);
       
-      // Indicate we are reseting.
+      // Indicate we are resetting.
       display_roundabout();
       break; 
     }  
@@ -297,7 +297,7 @@ boolean listen_for_value(int correct_value)
     // Set button LEDs to whatever the player is currently pressing,
     // even if it is incorrect. This is designed to show the player
     // they must press multiple buttons at the same time, because
-    // when they release a button, the led will turn off
+    // when they release a button, the led will turn off.
     display_leds(read_buttons());
     
     // Take another reading of the buttons, and if it's correct

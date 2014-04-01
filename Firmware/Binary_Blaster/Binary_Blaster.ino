@@ -121,6 +121,13 @@ void setup()
     // aka the players "score" when they have completed the game.
   Serial.begin(9600);
   
+  // Increase our odds of a truly random sequence generator
+    // Use an analogRead on a floating ADC pin (A0) to help the random() 
+    // function to be more truly random. Without this, it seems that
+    // the first random order is always the same.
+    // Random function is used in suffle_sequence().
+  randomSeed(analogRead(A0));
+  
   // Button switches (INPUTS with pullups)
   pinMode(button_input_pin_bit0, INPUT_PULLUP);
   pinMode(button_input_pin_bit1, INPUT_PULLUP);

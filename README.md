@@ -1,9 +1,9 @@
 Binary_Blaster
 ==============
 
-[![Binary Blaster](https://cdn.sparkfun.com//assets/parts/8/5/8/5/12037-05.jpg)
-*Binary Blaster (KIT-12037)*](https://www.sparkfun.com/products/12037)
+[![Binary Blaster](https://cdn.sparkfun.com//assets/parts/8/5/8/5/12037-SparkFun_Binary_Blaster_Kit-02.jpg)](https://www.sparkfun.com/products/12037)
 
+[Binary Blaster (KIT-12037)](https://www.sparkfun.com/products/12037)
 
 This beginner's thru-hole soldering kit is a fun way to learn binary conversion. It displays a decimal value, 
 and you are challenged to press the buttons to represent the correct binary version. Correctly press all 15 
@@ -15,6 +15,10 @@ Repository Contents
 
 * **/Firmware** - Firmware that comes programmed on the kit.
 * **/Hardware** - All Eagle design files (.brd, .sch)
+
+Documentation
+-------------------
+* [Assembly Guide](https://learn.sparkfun.com/tutorials/binary-blaster-assembly-guide)
 
 
 License Information

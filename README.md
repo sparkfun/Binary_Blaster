@@ -1,4 +1,4 @@
-Binary_Blaster
+Binary Blaster Kit
 ==============
 
 [![Binary Blaster](https://cdn.sparkfun.com//assets/parts/8/5/8/5/12037-SparkFun_Binary_Blaster_Kit-02.jpg)](https://www.sparkfun.com/products/12037)

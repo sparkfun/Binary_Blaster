@@ -104,7 +104,7 @@ long start_timestamp;
   // (aka 1 second). You can decrease this number to make it more difficult,
   // or make it longer if you'd like to have more time to practice.
   // This variable is used in function, listen_for_value().
-#define TIMEOUT_MILISECONDS 1000
+#define TIMEOUT_MILISECONDS 50000
 
 // Define a variable to display in hexadecimal or decimal
   // If this is set to true, then it will display in hex.
@@ -222,12 +222,12 @@ void loop()
     // Use a "for" loop to show each value, and listen to player input
     // As they correctly input each value, increment to the next spot in 
     // the sequence[] array.
-  for(int i = 0 ; i < 16 ; i++)
+  for(int i = 0 ; i <= 9 ; i++)
   {
     // Check to see if the player has made it to the last spot in the sequence[]
       // array - which is 15. If they have, then call the function,
       // display_winner() and break out of this for loop.
-    if(i == 15)
+    if(i == 9)
     {
       display_winner(); // player made it through all 15 - they win!
       break;
@@ -445,7 +445,8 @@ void display_7seg(int value)
 void shuffle_sequence()
 {
   // Start with all 15 options available
-  int sequence_options[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+  //int sequence_options[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+  int sequence_options[16] = {1,2,3,4,5,6,8,8,5,1,2,3,4,5,6};
   
   // Using a for loop, choose a random position (aka value) from 
   // sequence_options[] array
